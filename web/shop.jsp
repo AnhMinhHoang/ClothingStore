@@ -137,16 +137,16 @@
                                 </div>
                             </div>
                             <div class="col-6"></div>
-                            <div class="col-xl-3">
+<!--                            <div class="col-xl-3">
                                 <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
                                     <label for="fruits">Default Sorting:</label>
-                                    <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
+                                    <select id="sortOption" name="fruitlist" onchange="onChange()" class="border-0 form-select-sm bg-light me-3" form="fruitform">
                                         <option value="Nothing">Nothing</option>
                                         <option value="priceUp">Price Up</option>
                                         <option value="priceDown">Price Down</option>
                                     </select>   
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="row g-4">
                             <!--Get all array-->
@@ -338,18 +338,6 @@
                                         %>
                                         <!--Accessories end-->
                                     </jsp:useBean>
-                                    <!--                                    <div class="col-12">
-                                                                            <div class="pagination d-flex justify-content-center mt-5">
-                                                                                <a href="#" class="rounded">&laquo;</a>
-                                                                                <a href="#" class="active rounded">1</a>
-                                                                                <a href="#" class="rounded">2</a>
-                                                                                <a href="#" class="rounded">3</a>
-                                                                                <a href="#" class="rounded">4</a>
-                                                                                <a href="#" class="rounded">5</a>
-                                                                                <a href="#" class="rounded">6</a>
-                                                                                <a href="#" class="rounded">&raquo;</a>
-                                                                            </div>
-                                                                        </div>-->
                                 </div>
                             </div>
                         </div>
@@ -367,8 +355,8 @@
                     <div class="row g-4">
                         <div class="col-lg-3">
                             <a href="#">
-                                <h1 class="text-primary mb-0">Fruitables</h1>
-                                <p class="text-secondary mb-0">Fresh products</p>
+                                <h1 class="text-primary mb-0">Genz Clothings</h1>
+                                <p class="text-secondary mb-0">Fashionable Style</p>
                             </a>
                         </div>
                         <div class="col-lg-6">
@@ -476,52 +464,48 @@
             var product = all;
             function productClick(num) {
                 for (var i = 0; i < all.length; i += 1) {
-                    if (num === 1){
+                    if (num === 1) {
                         product = all;
                         all[i].style.display = 'block';
-                    }
-                    else
+                    } else
                         all[i].style.display = 'none';
                 }
                 for (var i = 0; i < tee.length; i += 1) {
-                    if (num === 2){
+                    if (num === 2) {
                         product = tee;
                         tee[i].style.display = 'block';
-                    }
-                    else
+                    } else
                         tee[i].style.display = 'none';
                 }
                 for (var i = 0; i < pant.length; i += 1) {
-                    if (num === 3){
+                    if (num === 3) {
                         product = pant;
                         pant[i].style.display = 'block';
-                    }
-                    else
+                    } else
                         pant[i].style.display = 'none';
                 }
                 for (var i = 0; i < jackdie.length; i += 1) {
-                    if (num === 4){
+                    if (num === 4) {
                         product = jackdie;
                         jackdie[i].style.display = 'block';
-                    }
-                    else
+                    } else
                         jackdie[i].style.display = 'none';
                 }
                 for (var i = 0; i < accessories.length; i += 1) {
-                    if (num === 5){
+                    if (num === 5) {
                         product = accessories;
                         accessories[i].style.display = 'block';
-                    }
-                    else
+                    } else
                         accessories[i].style.display = 'none';
                 }
             }
 
+            //search function
             function searchFuntion() {
                 var input = document.getElementById('userInput');
                 var filter = input.value.toUpperCase();
                 var a, txtValue;
-                
+
                 for (var i = 0; i < product.length; i++) {
                     a = product[i].getElementsByTagName("h4")[0];
                     txtValue = a.textContent || a.innerText;
