@@ -57,6 +57,7 @@ public class ProductDAOImpl extends DBContext{
     
     public static void main(String[] args) {
         ArrayList<Product> list = new ProductDAOImpl().listAllCategory("Tee");
+        System.out.println(list.size());
         for(Product item: list){
             System.out.println(item);
         }

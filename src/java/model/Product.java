@@ -16,6 +16,7 @@ public class Product implements Serializable{
     private String productImg;
     private String productDescription;
     private String productType;
+    private int total;
 
     public Product() {
     }
@@ -66,6 +67,14 @@ public class Product implements Serializable{
 
     public void setProductType(String productType) {
         this.productType = productType;
+    }
+    
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     @Override

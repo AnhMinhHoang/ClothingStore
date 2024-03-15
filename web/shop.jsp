@@ -150,6 +150,14 @@
                             </div>
                         </div>
                         <div class="row g-4">
+                            <!--Get all array-->
+                            <%
+                                ArrayList<Product> list = new ProductDAOImpl().listAllProduct();
+                                ArrayList<Product> listTee = new ProductDAOImpl().listAllCategory("Tee");
+                                ArrayList<Product> listPant = new ProductDAOImpl().listAllCategory("Pant");
+                                ArrayList<Product> listJackdie = new ProductDAOImpl().listAllCategory("Jacket / Hoodie");
+                                ArrayList<Product> listAccessories = new ProductDAOImpl().listAllCategory("Accessories");
+                            %>
                             <div class="col-lg-3">
                                 <div class="row g-4">
                                     <div class="col-lg-12">
@@ -158,32 +166,32 @@
                                             <ul class="list-unstyled fruite-categorie">
                                                 <li>
                                                     <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>All</a>
-                                                        <span>(2)</span>
+                                                        <a href="#" onclick="productClick(1); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i>All</a>
+                                                        <span>(<%=list.size()%>)</span>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Tee</a>
-                                                        <span>(3)</span>
+                                                        <a href="#" onclick="productClick(2); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i>Tee</a>
+                                                        <span>(<%=listTee.size()%>)</span>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Pant</a>
-                                                        <span>(5)</span>
+                                                        <a href="#" onclick="productClick(3); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i>Pant</a>
+                                                        <span>(<%=listPant.size()%>)</span>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Jacket / Hoodie</a>
-                                                        <span>(2)</span>
+                                                        <a href="#" onclick="productClick(4); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i>Jacket / Hoodie</a>
+                                                        <span>(<%=listJackdie.size()%>)</span>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Accessories</a>
-                                                        <span>(8)</span>
+                                                        <a href="#" onclick="productClick(5); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i>Accessories</a>
+                                                        <span>(<%=listAccessories.size()%>)</span>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -193,37 +201,143 @@
                             </div>
                             <div class="col-lg-9">
                                 <div class="row g-4 justify-content-center">
-                                    <%
-                                        ArrayList<Product> list = new ProductDAOImpl().listAllProduct();
+                                    <!--All start-->
+                                    <jsp:useBean id="product" class="model.Product">
+                                        <%
+                                            for(Product item: list){
                                         %>
-                                        <jsp:useBean id="product" class="model.Product">
-                                    <%
-                                        for(Product item: list){
-                                    %>
-                                    <jsp:setProperty name="product" property="productName" value="<%=item.getProductName()%>"/>
-                                    <jsp:setProperty name="product" property="productPrice" value="<%=item.getProductPrice()%>"/>
-                                    <jsp:setProperty name="product" property="productImg" value="<%=item.getProductImg()%>"/>
-                                    <jsp:setProperty name="product" property="productDescription" value="<%=item.getProductDescription()%>"/>
-                                    <jsp:setProperty name="product" property="productType" value="<%=item.getProductType()%>"/>
-                                    <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="<jsp:getProperty name="product" property="productImg"/>" class="img-fluid w-100 rounded-top" alt="">
-                                            </div>
+                                        <jsp:setProperty name="product" property="productName" value="<%=item.getProductName()%>"/>
+                                        <jsp:setProperty name="product" property="productPrice" value="<%=item.getProductPrice()%>"/>
+                                        <jsp:setProperty name="product" property="productImg" value="<%=item.getProductImg()%>"/>
+                                        <jsp:setProperty name="product" property="productDescription" value="<%=item.getProductDescription()%>"/>
+                                        <jsp:setProperty name="product" property="productType" value="<%=item.getProductType()%>"/>
+                                        <div class="col-md-6 col-lg-6 col-xl-4 all" style="display: block">
+                                            <div class="rounded position-relative fruite-item">
+                                                <div class="fruite-img">
+                                                    <img src="<jsp:getProperty name="product" property="productImg"/>" class="img-fluid w-100 rounded-top" alt="">
+                                                </div>
                                                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><jsp:getProperty name="product" property="productType"/></div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4><jsp:getProperty name="product" property="productName"/></h4>
-                                                <p><jsp:getProperty name="product" property="productDescription"/></p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0"><jsp:getProperty name="product" property="productPrice"/> VND</p>
-                                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                    <h4><jsp:getProperty name="product" property="productName"/></h4>
+                                                    <p><jsp:getProperty name="product" property="productDescription"/></p>
+                                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                                        <p class="text-dark fs-5 fw-bold mb-0"><jsp:getProperty name="product" property="productPrice"/> VND</p>
+                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <%
-                                        }
-                                    %>
+                                        <!--All end-->
+                                        <!--Tee start-->
+                                        <%
+                                            }
+                                            for(Product item: listTee){
+                                        %>
+                                        <jsp:setProperty name="product" property="productName" value="<%=item.getProductName()%>"/>
+                                        <jsp:setProperty name="product" property="productPrice" value="<%=item.getProductPrice()%>"/>
+                                        <jsp:setProperty name="product" property="productImg" value="<%=item.getProductImg()%>"/>
+                                        <jsp:setProperty name="product" property="productDescription" value="<%=item.getProductDescription()%>"/>
+                                        <jsp:setProperty name="product" property="productType" value="<%=item.getProductType()%>"/>
+                                        <div class="col-md-6 col-lg-6 col-xl-4 tee" style="display: none">
+                                            <div class="rounded position-relative fruite-item">
+                                                <div class="fruite-img">
+                                                    <img src="<jsp:getProperty name="product" property="productImg"/>" class="img-fluid w-100 rounded-top" alt="">
+                                                </div>
+                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><jsp:getProperty name="product" property="productType"/></div>
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                    <h4><jsp:getProperty name="product" property="productName"/></h4>
+                                                    <p><jsp:getProperty name="product" property="productDescription"/></p>
+                                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                                        <p class="text-dark fs-5 fw-bold mb-0"><jsp:getProperty name="product" property="productPrice"/> VND</p>
+                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Tee end-->
+                                        <!--Pant start-->
+                                        <%
+                                            }
+                                            for(Product item: listPant){
+                                        %>
+                                        <jsp:setProperty name="product" property="productName" value="<%=item.getProductName()%>"/>
+                                        <jsp:setProperty name="product" property="productPrice" value="<%=item.getProductPrice()%>"/>
+                                        <jsp:setProperty name="product" property="productImg" value="<%=item.getProductImg()%>"/>
+                                        <jsp:setProperty name="product" property="productDescription" value="<%=item.getProductDescription()%>"/>
+                                        <jsp:setProperty name="product" property="productType" value="<%=item.getProductType()%>"/>
+                                        <div class="col-md-6 col-lg-6 col-xl-4 pant" style="display: none">
+                                            <div class="rounded position-relative fruite-item">
+                                                <div class="fruite-img">
+                                                    <img src="<jsp:getProperty name="product" property="productImg"/>" class="img-fluid w-100 rounded-top" alt="">
+                                                </div>
+                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><jsp:getProperty name="product" property="productType"/></div>
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                    <h4><jsp:getProperty name="product" property="productName"/></h4>
+                                                    <p><jsp:getProperty name="product" property="productDescription"/></p>
+                                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                                        <p class="text-dark fs-5 fw-bold mb-0"><jsp:getProperty name="product" property="productPrice"/> VND</p>
+                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Jacket / Hoodie start-->
+                                        <%
+                                            }
+                                            for(Product item: listJackdie){
+                                        %>
+                                        <jsp:setProperty name="product" property="productName" value="<%=item.getProductName()%>"/>
+                                        <jsp:setProperty name="product" property="productPrice" value="<%=item.getProductPrice()%>"/>
+                                        <jsp:setProperty name="product" property="productImg" value="<%=item.getProductImg()%>"/>
+                                        <jsp:setProperty name="product" property="productDescription" value="<%=item.getProductDescription()%>"/>
+                                        <jsp:setProperty name="product" property="productType" value="<%=item.getProductType()%>"/>
+                                        <div class="col-md-6 col-lg-6 col-xl-4 jackdie" style="display: none">
+                                            <div class="rounded position-relative fruite-item">
+                                                <div class="fruite-img">
+                                                    <img src="<jsp:getProperty name="product" property="productImg"/>" class="img-fluid w-100 rounded-top" alt="">
+                                                </div>
+                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><jsp:getProperty name="product" property="productType"/></div>
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                    <h4><jsp:getProperty name="product" property="productName"/></h4>
+                                                    <p><jsp:getProperty name="product" property="productDescription"/></p>
+                                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                                        <p class="text-dark fs-5 fw-bold mb-0"><jsp:getProperty name="product" property="productPrice"/> VND</p>
+                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Jacket / Hoodie end-->
+                                        <!--Accessories start-->
+                                        <%
+                                            }
+                                            for(Product item: listAccessories){
+                                        %>
+                                        <jsp:setProperty name="product" property="productName" value="<%=item.getProductName()%>"/>
+                                        <jsp:setProperty name="product" property="productPrice" value="<%=item.getProductPrice()%>"/>
+                                        <jsp:setProperty name="product" property="productImg" value="<%=item.getProductImg()%>"/>
+                                        <jsp:setProperty name="product" property="productDescription" value="<%=item.getProductDescription()%>"/>
+                                        <jsp:setProperty name="product" property="productType" value="<%=item.getProductType()%>"/>
+                                        <div class="col-md-6 col-lg-6 col-xl-4 accessories" style="display: none">
+                                            <div class="rounded position-relative fruite-item">
+                                                <div class="fruite-img">
+                                                    <img src="<jsp:getProperty name="product" property="productImg"/>" class="img-fluid w-100 rounded-top" alt="">
+                                                </div>
+                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><jsp:getProperty name="product" property="productType"/></div>
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                    <h4><jsp:getProperty name="product" property="productName"/></h4>
+                                                    <p><jsp:getProperty name="product" property="productDescription"/></p>
+                                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                                        <p class="text-dark fs-5 fw-bold mb-0"><jsp:getProperty name="product" property="productPrice"/> VND</p>
+                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <%
+                                            }
+                                        %>
+                                        <!--Accessories end-->
                                     </jsp:useBean>
                                     <div class="col-12">
                                         <div class="pagination d-flex justify-content-center mt-5">
@@ -351,8 +465,37 @@
         <script src="lib/lightbox/js/lightbox.min.js"></script>
         <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
+        <!-- Javascript -->
+        <script src="js/main.js">
+        </script>
+        <script>
+            var all = document.getElementsByClassName('all');
+            var tee = document.getElementsByClassName('tee');
+            var pant = document.getElementsByClassName('pant');
+            var jackdie = document.getElementsByClassName('jackdie');
+            var accessories = document.getElementsByClassName('accessories');
+            function productClick(num) {
+                for (var i = 0; i < all.length; i += 1) {
+                    if(num===1) all[i].style.display = 'block';
+                    else all[i].style.display = 'none';
+                }
+                for (var i = 0; i < tee.length; i += 1) {
+                    if(num===2) tee[i].style.display = 'block';
+                    else tee[i].style.display = 'none';
+                }
+                for (var i = 0; i < pant.length; i += 1) {
+                    if(num===3) pant[i].style.display = 'block';
+                    else pant[i].style.display = 'none';
+                }
+                for (var i = 0; i < jackdie.length; i += 1) {
+                    if(num===4) jackdie[i].style.display = 'block';
+                    else jackdie[i].style.display = 'none';
+                }
+                for (var i = 0; i < accessories.length; i += 1) {
+                    if(num===5) accessories[i].style.display = 'block';
+                    else accessories[i].style.display = 'none';
+                }
+            }
+        </script>
     </body>
-
 </html>
