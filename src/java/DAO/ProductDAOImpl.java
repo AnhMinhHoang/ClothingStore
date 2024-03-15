@@ -46,11 +46,7 @@ public class ProductDAOImpl extends DBContext{
         }
         return list;
     }
-//    
-//    public ArrayList<Product> listAllSort(String type){
-//        
-//    }
-    
+
     public static void main(String[] args) {
         ArrayList<Product> list = new ProductDAOImpl().listAllCategory("Tee");
         System.out.println(list.size());
