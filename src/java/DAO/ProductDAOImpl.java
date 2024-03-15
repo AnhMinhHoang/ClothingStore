@@ -47,10 +47,6 @@ public class ProductDAOImpl extends DBContext{
         return list;
     }
 //    
-//    public ArrayList<Product> listAllSearch(String search){
-//        
-//    }
-//    
 //    public ArrayList<Product> listAllSort(String type){
 //        
 //    }

@@ -133,8 +133,7 @@
                         <div class="row g-4">
                             <div class="col-xl-3">
                                 <div class="input-group w-100 mx-auto d-flex">
-                                    <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                                    <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                                    <input type="search" id="userInput" onkeyup="searchFuntion()" class="form-control p-3" placeholder="keywords">
                                 </div>
                             </div>
                             <div class="col-6"></div>
@@ -339,18 +338,18 @@
                                         %>
                                         <!--Accessories end-->
                                     </jsp:useBean>
-                                    <div class="col-12">
-                                        <div class="pagination d-flex justify-content-center mt-5">
-                                            <a href="#" class="rounded">&laquo;</a>
-                                            <a href="#" class="active rounded">1</a>
-                                            <a href="#" class="rounded">2</a>
-                                            <a href="#" class="rounded">3</a>
-                                            <a href="#" class="rounded">4</a>
-                                            <a href="#" class="rounded">5</a>
-                                            <a href="#" class="rounded">6</a>
-                                            <a href="#" class="rounded">&raquo;</a>
-                                        </div>
-                                    </div>
+                                    <!--                                    <div class="col-12">
+                                                                            <div class="pagination d-flex justify-content-center mt-5">
+                                                                                <a href="#" class="rounded">&laquo;</a>
+                                                                                <a href="#" class="active rounded">1</a>
+                                                                                <a href="#" class="rounded">2</a>
+                                                                                <a href="#" class="rounded">3</a>
+                                                                                <a href="#" class="rounded">4</a>
+                                                                                <a href="#" class="rounded">5</a>
+                                                                                <a href="#" class="rounded">6</a>
+                                                                                <a href="#" class="rounded">&raquo;</a>
+                                                                            </div>
+                                                                        </div>-->
                                 </div>
                             </div>
                         </div>
@@ -474,26 +473,62 @@
             var pant = document.getElementsByClassName('pant');
             var jackdie = document.getElementsByClassName('jackdie');
             var accessories = document.getElementsByClassName('accessories');
+            var product = all;
             function productClick(num) {
                 for (var i = 0; i < all.length; i += 1) {
-                    if(num===1) all[i].style.display = 'block';
-                    else all[i].style.display = 'none';
+                    if (num === 1){
+                        product = all;
+                        all[i].style.display = 'block';
+                    }
+                    else
+                        all[i].style.display = 'none';
                 }
                 for (var i = 0; i < tee.length; i += 1) {
-                    if(num===2) tee[i].style.display = 'block';
-                    else tee[i].style.display = 'none';
+                    if (num === 2){
+                        product = tee;
+                        tee[i].style.display = 'block';
+                    }
+                    else
+                        tee[i].style.display = 'none';
                 }
                 for (var i = 0; i < pant.length; i += 1) {
-                    if(num===3) pant[i].style.display = 'block';
-                    else pant[i].style.display = 'none';
+                    if (num === 3){
+                        product = pant;
+                        pant[i].style.display = 'block';
+                    }
+                    else
+                        pant[i].style.display = 'none';
                 }
                 for (var i = 0; i < jackdie.length; i += 1) {
-                    if(num===4) jackdie[i].style.display = 'block';
-                    else jackdie[i].style.display = 'none';
+                    if (num === 4){
+                        product = jackdie;
+                        jackdie[i].style.display = 'block';
+                    }
+                    else
+                        jackdie[i].style.display = 'none';
                 }
                 for (var i = 0; i < accessories.length; i += 1) {
-                    if(num===5) accessories[i].style.display = 'block';
-                    else accessories[i].style.display = 'none';
+                    if (num === 5){
+                        product = accessories;
+                        accessories[i].style.display = 'block';
+                    }
+                    else
+                        accessories[i].style.display = 'none';
+                }
+            }
+
+            function searchFuntion() {
+                var input = document.getElementById('userInput');
+                var filter = input.value.toUpperCase();
+                var a, txtValue;
+                
+                for (var i = 0; i < product.length; i++) {
+                    a = product[i].getElementsByTagName("h4")[0];
+                    txtValue = a.textContent || a.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1)
+                        product[i].style.display = 'block';
+                    else
+                        product[i].style.display = 'none';
                 }
             }
         </script>
