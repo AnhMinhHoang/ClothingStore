@@ -154,7 +154,7 @@
                                 ArrayList<Product> list = new ProductDAOImpl().listAllProduct();
                                 ArrayList<Product> listTee = new ProductDAOImpl().listAllCategory("Tee");
                                 ArrayList<Product> listPant = new ProductDAOImpl().listAllCategory("Pant");
-                                ArrayList<Product> listJackdie = new ProductDAOImpl().listAllCategory("Jacket / Hoodie");
+                                ArrayList<Product> listJackdie = new ProductDAOImpl().listAllCategory("Jacket/Hoodie");
                                 ArrayList<Product> listAccessories = new ProductDAOImpl().listAllCategory("Accessories");
                             %>
                             <div class="col-lg-3">
