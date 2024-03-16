@@ -5,12 +5,12 @@
 package model;
 
 import java.io.Serializable;
-
 /**
  *
  * @author GoldCandy
  */
 public class Product implements Serializable{
+    private int productId;
     private String productName;
     private int productPrice;
     private String productImg;
@@ -21,12 +21,21 @@ public class Product implements Serializable{
     public Product() {
     }
 
-    public Product(String productName, int productPrice, String productImg, String productDescription, String productType) {
+    public Product(int productId, String productName, int productPrice, String productImg, String productDescription, String productType) {
+        this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productImg = productImg;
         this.productDescription = productDescription;
         this.productType = productType;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getProductDescription() {
@@ -79,6 +88,6 @@ public class Product implements Serializable{
 
     @Override
     public String toString() {
-        return "Product{" + "productName=" + productName + ", productPrice=" + productPrice + ", productImg=" + productImg + ", productDescription=" + productDescription + ", productType=" + productType + '}';
+        return "Product{" + "productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice + ", productImg=" + productImg + ", productDescription=" + productDescription + ", productType=" + productType + ", total=" + total + '}';
     }
 }

@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author GoldCandy
  */
-public class PreventLoginRegisterFilter implements Filter {
+public class Filters implements Filter {
     
     private static final boolean debug = true;
 
@@ -31,7 +31,7 @@ public class PreventLoginRegisterFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
     
-    public PreventLoginRegisterFilter() {
+    public Filters() {
     }    
     
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
@@ -121,14 +121,29 @@ public class PreventLoginRegisterFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String url = httpRequest.getServletPath();
+        
+        //prevent user access to another page
+        
+//        String urls = "404.jsp"+"cart.jsp"+ "footer.jsp"+ "header.jsp"+ "index.html"+ "index.jsp"
+//            +"login.jsp"+ "register.jsp"+ "shop.jsp"+ "test.jsp"+ "Home"+ "login"+ "registers";
+//        if(!urls.contains(url)){
+//            httpResponse.sendRedirect("Home");
+//        }
+        
+//        if(url.endsWith(".jsp")){
+//            httpResponse.sendRedirect("Home");
+//        }
+//        
         HttpSession session = httpRequest.getSession(false);
+        //prevent login register when logged in
         if(url.contains("login.jsp") || url.contains("register.jsp")){
             if(session.getAttribute("currentUser") != null){
                 httpResponse.sendRedirect("Home");
             }
         }
         
-        if(url.contains("cart.jsp") && session.getAttribute("currentUser") == null){
+        //prevent cart page when not logged in
+        if(session.getAttribute("currentUser") == null && url.contains("cart.jsp")){
             httpResponse.sendRedirect("login.jsp");
         }
 
@@ -143,6 +158,17 @@ public class PreventLoginRegisterFilter implements Filter {
             }
             sendProcessingError(problem, response);
         }
+    }
+    
+    public boolean checkPage(String s){
+        String[] url = {"404.jsp", "cart.jsp", "footer.jsp", "header.jsp", "index.html", "index.jsp",
+            "login.jsp", "register.jsp", "shop.jsp", "test.jsp", "Home", "login", "registers"};
+        for (String url1 : url) {
+            if (s.contains(url1)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
