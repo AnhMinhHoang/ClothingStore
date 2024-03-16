@@ -34,7 +34,6 @@
             </div>
         </div>
     </div>
-
     <div class="container-fluid featurs py-5" style="margin-top: -120px">
         <div class="container py-5">
             <div class="col-lg-4 text-start" style="justify-content: center;">

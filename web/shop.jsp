@@ -34,8 +34,8 @@
         <h1 class="text-center text-white display-6">Shop</h1>
         <ol class="breadcrumb justify-content-center mb-0">
             <li class="breadcrumb-item"><a href="Home">Home</a></li>
-            <li class="breadcrumb-item"><a href="cart.jsp">Cart</a></li>
             <li class="breadcrumb-item active text-white">Shop</li>
+            <li class="breadcrumb-item"><a href="cart.jsp">Cart</a></li>
         </ol>
     </div>
     <!-- Single Page Header End -->
@@ -399,12 +399,14 @@
     function searchFuntion() {
         var input = document.getElementById('userInput');
         var filter = input.value.toUpperCase();
-        var a, txtValue;
+        var a, b, txtValue, txtValue2;
 
         for (var i = 0; i < product.length; i++) {
             a = product[i].getElementsByTagName("h4")[0];
+            b = product[i].getElementsByTagName("p")[0];
             txtValue = a.textContent || a.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1)
+            txtValue2 = b.textContent || b.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1)
                 product[i].style.display = 'block';
             else
                 product[i].style.display = 'none';
