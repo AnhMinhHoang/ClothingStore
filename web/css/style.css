@@ -176,7 +176,12 @@
 /*** Navbar End ***/
 
 /*** Hero Header ***/
-
+.hero-header {
+    background: linear-gradient(rgba(248, 223, 173, 0.5), rgba(248, 223, 173, 0.5));
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .carousel-item {
     position: relative;
@@ -213,7 +218,7 @@
 
 .page-header {
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../img/cart-page-header-img.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../img/shopBack.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

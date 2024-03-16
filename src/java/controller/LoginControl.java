@@ -57,6 +57,7 @@ public class LoginControl extends HttpServlet {
         if (user != null) {
             session.setAttribute("currentUser", user);
             session.setAttribute("userID", user.getId());
+            session.setAttribute("userEmail", email);
             session.setMaxInactiveInterval(600);
 
             if (user.isAdmin()) {

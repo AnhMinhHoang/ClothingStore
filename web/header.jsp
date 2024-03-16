@@ -30,6 +30,17 @@
                     <div class="top-info ps-2">
                         <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">FPT University</small>
                     </div>
+                    <%
+                        if(session.getAttribute("userEmail") != null){
+                            User user = (User)session.getAttribute("currentUser");
+                            String name = user.getLastName()+" "+user.getFirstName();
+                    %>
+                    <div class="top-info ps-2">
+                       <a href="#" class="text-white"> <small class="me-3">Welcome <%=name%>!</small>
+                    </div>
+                    <%
+                        }
+                    %>
                     <div class="top-link pe-2">
                         <a href="#" class="text-white"><small class="text-white mx-2">Language: EN</small></a>
                     </div>

@@ -2,13 +2,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"></jsp:include>
     <!-- Hero Start -->
-    <div class="container-fluid py-5 mb-5 " style="margin-top: 65px">
+    <div class="container-fluid py-5 mb-5 hero-header" style="margin-top: 65px">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-md-12 col-lg-7">
                     <h4 class="mb-3 text-secondary">Trendy clothing's style for GenZ</h4>
                     <h1 class="mb-5 display-3 text-primary">"Style that Fits You!"</h1>
-
                 </div>
                 <div class="col-md-12 col-lg-5">
                     <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
@@ -36,7 +35,7 @@
         </div>
     </div>
 
-    <div class="container-fluid featurs py-5" style="margin-top: -160px">
+    <div class="container-fluid featurs py-5" style="margin-top: -120px">
         <div class="container py-5">
             <div class="col-lg-4 text-start" style="justify-content: center;">
                 <h1>Co-Founder</h1>

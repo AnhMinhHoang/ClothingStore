@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello <%=session.getAttribute("userID")%></h1>
+        <h1>Hello <%=session.getAttribute("userEmail")%></h1>
     </body>
 </html>
