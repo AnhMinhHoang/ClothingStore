@@ -121,11 +121,15 @@ public class PreventLoginRegisterFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String url = httpRequest.getServletPath();
+        HttpSession session = httpRequest.getSession(false);
         if(url.contains("login.jsp") || url.contains("register.jsp")){
-            HttpSession session = httpRequest.getSession(false);
             if(session.getAttribute("currentUser") != null){
                 httpResponse.sendRedirect("Home");
             }
+        }
+        
+        if(url.contains("cart.jsp") && session.getAttribute("currentUser") == null){
+            httpResponse.sendRedirect("login.jsp");
         }
 
         // If there was a problem, we want to rethrow it if it is

@@ -8,6 +8,7 @@ import DAO.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,11 +36,27 @@ public class LoginControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String remember = request.getParameter("remember");
+        
+        if(remember != null){
+            Cookie cookieEmail = new Cookie("cookieEmail", email);
+            Cookie cookiePass = new Cookie("cookiePass", password);
+            Cookie cookieRemember = new Cookie("cookieRemember", remember);
+
+            cookieEmail.setMaxAge(60*60*1);
+            cookiePass.setMaxAge(60*60*1);
+            cookieRemember.setMaxAge(60*60*1);
+
+            response.addCookie(cookieEmail);
+            response.addCookie(cookiePass);
+            response.addCookie(cookieRemember);
+        }
 
         HttpSession session = request.getSession();
         User user = authenticateUser(email, password);
         if (user != null) {
             session.setAttribute("currentUser", user);
+            session.setMaxInactiveInterval(60*60);
 
             if (user.isAdmin()) {
 

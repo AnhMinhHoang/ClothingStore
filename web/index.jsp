@@ -14,11 +14,11 @@
                     <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active rounded">
-                                <img src="img/store-clothes-clothing-line.jpg" class="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide">
+                                <img src="img/store-clothes-clothing-line.png" class="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide">
                                 <a href="#" class="btn px-4 py-2 text-white rounded">Fashionable</a>
                             </div>
                             <div class="carousel-item rounded">
-                                <img src="img/pexels-photo-1488463.jpg" class="img-fluid w-100 h-100 rounded" alt="Second slide">
+                                <img src="img/pexels-photo-1488463.png" class="img-fluid w-100 h-100 rounded" alt="Second slide">
                                 <a href="#" class="btn px-4 py-2 text-white rounded">Style</a>
                             </div>
                         </div>
@@ -35,8 +35,7 @@
             </div>
         </div>
     </div>
-    <!-- Hero End -->
-    <!-- Featurs Section Start -->
+
     <div class="container-fluid featurs py-5" style="margin-top: -160px">
         <div class="container py-5">
             <div class="col-lg-4 text-start" style="justify-content: center;">
@@ -90,10 +89,7 @@
             </div>
         </div>
     </div>
-    <!-- Featurs Section End -->
 
-
-    <!-- Banner Section Start-->
     <div class="container-fluid banner bg-secondary my-5">
         <div class="container py-5">
             <div class="row g-4 align-items-center">
@@ -101,17 +97,16 @@
                     <div class="py-4">
                         <h1 class="display-3 text-white">Best Seller</h1>
                         <p class="fw-normal display-3 text-dark mb-4">in Our Store</p>
-                        <p class="mb-4 text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
                         <a href="shop.jsp" class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">BUY</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative">
-                        <img src="img/baner-1.png" class="img-fluid w-100 rounded" alt="">
+                        <img src="img/Hoodie1.png" class="img-fluid w-100 rounded" alt="">
                         <div class="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute" style="width: 140px; height: 140px; top: 0; left: 0;">
-                            <h1 style="font-size: 100px;">2</h1>
+                            <h1 style="font-size: 100px;">5</h1>
                             <div class="d-flex flex-column">
-                                <span class="h2 mb-0">50k</span>
+                                <span class="h2 mb-0">00k</span>
                                 <span class="h4 text-muted mb-0">vnd</span>
                             </div>
                         </div>
@@ -120,8 +115,7 @@
             </div>
         </div>
     </div>
-    <!-- Banner Section End -->
-    <!-- Tastimonial Start -->
+
     <div class="container-fluid testimonial py-5">
         <div class="container py-5">
             <div class="testimonial-header text-center">
@@ -133,12 +127,11 @@
                     <div class="position-relative">
                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
                         <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            </p>
+                            <p class="mb-0">San pham nay rat tot, chac chan toi se quay lai mua lan 2</p>
                         </div>
                         <div class="d-flex align-items-center flex-nowrap">
                             <div class="bg-secondary rounded">
-                                <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
+                                <img src="img/User1.png" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
                             </div>
                             <div class="ms-4 d-block">
                                 <h4 class="text-dark">MinhHADE180652</h4>
@@ -158,12 +151,12 @@
                     <div class="position-relative">
                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
                         <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            </p>
+                            <p class="mb-0">San pham nay rat tot, chac chan toi se quay lai mua lan 2</p>
+
                         </div>
                         <div class="d-flex align-items-center flex-nowrap">
                             <div class="bg-secondary rounded">
-                                <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
+                                <img src="img/User2.png" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
                             </div>
                             <div class="ms-4 d-block">
                                 <h4 class="text-dark">TienHQDE180656</h4>
@@ -183,12 +176,12 @@
                     <div class="position-relative">
                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
                         <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            </p>
+                            <p class="mb-0">San pham nay rat tot, chac chan toi se quay lai mua lan 2</p>
+
                         </div>
                         <div class="d-flex align-items-center flex-nowrap">
                             <div class="bg-secondary rounded">
-                                <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
+                                <img src="img/User3.png" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
                             </div>
                             <div class="ms-4 d-block">
                                 <h4 class="text-dark">QuanPMDE170563</h4>
@@ -207,6 +200,4 @@
             </div>
         </div>
     </div>
-    <!-- Tastimonial End -->    
-    <jsp
-    <jsp:include page="footer.jsp"></jsp:include>   
+<jsp:include page="footer.jsp"></jsp:include>

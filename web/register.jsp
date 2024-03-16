@@ -1,8 +1,11 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset = UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-
-
 <jsp:include page="header.jsp"></jsp:include>
+<script>
+            var container = document.getElementById("tagID");
+            var current = container.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+</script>
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
