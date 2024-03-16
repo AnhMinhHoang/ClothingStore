@@ -82,13 +82,13 @@
                                 <p class="mb-0 mt-4"><jsp:getProperty name="bill" property="productName"/></p>
                             </td>
                             <td>
-                                <p class="mb-0 mt-4"><jsp:getProperty name="bill" property="productPrice"/></p>
+                                <p class="mb-0 mt-4"><jsp:getProperty name="bill" property="productPrice"/> VND</p>
                             </td>
                             <td>
-                                <p class="mb-0 mt-4"><jsp:getProperty name="bill" property="quantity"/></p>
+                                <p style="margin-left: 15%" class="mb-0 mt-4"><jsp:getProperty name="bill" property="quantity"/></p>
                             </td>
                             <td>
-                                <p class="mb-0 mt-4"><jsp:getProperty name="bill" property="total"/></p>
+                                <p class="mb-0 mt-4"><jsp:getProperty name="bill" property="total"/> VND</p>
                             </td>
                         </tr>
                         <%
@@ -103,7 +103,7 @@
                     <div class="bg-light rounded">
                         <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                             <h5 class="mb-0 ps-4 me-4">Total:</h5>
-                            <p class="mb-0 pe-4"><jsp:getProperty name="bill" property="allTotal"/></p>
+                            <p class="mb-0 pe-4"><jsp:getProperty name="bill" property="allTotal"/> VND</p>
                         </div>
                         <form action="Purchase" method="GET">
                             <input onclick="confirm()" type="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" value="Purchase"/>
