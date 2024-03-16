@@ -69,7 +69,7 @@ public class LoginControl extends HttpServlet {
 
         } else {
             
-            request.setAttribute("errorMessage", "Username or password may be wrong ! Please login again !");
+            request.setAttribute("errorMessage", "Email or password is wrong!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }

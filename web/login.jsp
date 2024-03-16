@@ -56,16 +56,9 @@
                             <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Login</button>
                         </div>
                         <hr class="my-4">
-                        <div class="d-grid mb-2">
-                            <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
-                                <i class="fab fa-google me-2"></i> Sign in with Google
-                            </button>
-                        </div>
-                        <div class="d-grid">
-                            <button class="btn btn-facebook btn-login text-uppercase fw-bold" type="submit">
-                                <i class="fab fa-facebook-f me-2"></i> Sign in with Facebook
-                            </button>
-                        </div>
+                        <div>
+                            <span>Don't have account?</span><a href="register.jsp"> Register here!</a>
+                        </div>                     
                     </form>
                 </div>
             </div>

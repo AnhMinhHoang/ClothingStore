@@ -122,7 +122,6 @@ public class Filters implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String url = httpRequest.getServletPath();
         
-        //prevent user access to another page
         
         HttpSession session = httpRequest.getSession(false);
         //prevent login register when logged in

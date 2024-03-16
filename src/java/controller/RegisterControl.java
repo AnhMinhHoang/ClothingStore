@@ -30,17 +30,18 @@ public class RegisterControl extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String agreed = request.getParameter("agreed");
-        System.out.println(firstName+lastName+email+password);
+        User user = new UserDAOImpl().findByEmail(email);
+        System.out.println(firstName + lastName + email + password);
         boolean status = false;
         String errorMessage = "";
         String successMessage = "";
-        if (agreed != null) {
+        if (agreed != null && !firstName.isBlank() && !lastName.isBlank() && !email.isBlank() && !password.isBlank() && user == null) {
             User newUser = new User();
             newUser.setFirstName(firstName);
             newUser.setLastName(lastName);
@@ -49,17 +50,25 @@ public class RegisterControl extends HttpServlet {
             UserDAO userDAO = new UserDAOImpl();
             status = userDAO.insertUser(firstName, lastName, email, password);
             if (status) {
-                successMessage = "Register successfully !";
+                successMessage = "Register successfully!";
             } else {
-                errorMessage = "Something went wrong ! Please again!";
+                errorMessage = "Something went wrong! Please again!";
             }
         } else {
-            errorMessage = "Please agree with use term";
+            if (agreed == null) {
+                errorMessage = "Please agree with use term ";
+            }
+            if(firstName.isBlank() || lastName.isBlank() || email.isBlank() || password.isBlank()){
+                errorMessage = "Please fill all infomation!";
+            }
+            if(user != null){
+                errorMessage = "Email has been register! <span><a href='login.jsp'>Click here to login!</a></span>";
+            }
         }
         request.setAttribute("errorMessage", errorMessage);
         request.setAttribute("successMessage", successMessage);
         request.getRequestDispatcher("register.jsp").forward(request, response);
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

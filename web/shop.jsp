@@ -139,10 +139,21 @@
                                             <p><jsp:getProperty name="product" property="productDescription"/></p>
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0"><jsp:getProperty name="product" property="productPrice"/> VND</p>
+                                                <%
+                                                if(session.getAttribute("currentUser") != null){
+                                                %>
                                                 <a href="AddToCart?productId=<jsp:getProperty name="product" property="productId"/>" 
                                                    onclick="promt()" class="btn border border-secondary rounded-pill px-3 text-primary">
                                                     <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
                                                 </a>
+                                                <%
+                                                }
+                                                else{
+                                                %>
+                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <%
+                                                }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
@@ -170,10 +181,21 @@
                                             <p><jsp:getProperty name="product" property="productDescription"/></p>
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0"><jsp:getProperty name="product" property="productPrice"/> VND</p>
+                                                <%
+                                                if(session.getAttribute("currentUser") != null){
+                                                %>
                                                 <a href="AddToCart?productId=<jsp:getProperty name="product" property="productId"/>" 
                                                    onclick="promt()" class="btn border border-secondary rounded-pill px-3 text-primary">
                                                     <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
                                                 </a>
+                                                <%
+                                                }
+                                                else{
+                                                %>
+                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <%
+                                                }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
@@ -201,10 +223,21 @@
                                             <p><jsp:getProperty name="product" property="productDescription"/></p>
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0"><jsp:getProperty name="product" property="productPrice"/> VND</p>
+                                                <%
+                                                if(session.getAttribute("currentUser") != null){
+                                                %>
                                                 <a href="AddToCart?productId=<jsp:getProperty name="product" property="productId"/>" 
                                                    onclick="promt()" class="btn border border-secondary rounded-pill px-3 text-primary">
                                                     <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
                                                 </a>
+                                                <%
+                                                }
+                                                else{
+                                                %>
+                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <%
+                                                }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
@@ -231,10 +264,21 @@
                                             <p><jsp:getProperty name="product" property="productDescription"/></p>
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0"><jsp:getProperty name="product" property="productPrice"/> VND</p>
+                                                <%
+                                                if(session.getAttribute("currentUser") != null){
+                                                %>
                                                 <a href="AddToCart?productId=<jsp:getProperty name="product" property="productId"/>" 
                                                    onclick="promt()" class="btn border border-secondary rounded-pill px-3 text-primary">
                                                     <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
                                                 </a>
+                                                <%
+                                                }
+                                                else{
+                                                %>
+                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <%
+                                                }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
@@ -262,10 +306,21 @@
                                             <p><jsp:getProperty name="product" property="productDescription"/></p>
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0"><jsp:getProperty name="product" property="productPrice"/> VND</p>
+                                                <%
+                                                if(session.getAttribute("currentUser") != null){
+                                                %>
                                                 <a href="AddToCart?productId=<jsp:getProperty name="product" property="productId"/>" 
                                                    onclick="promt()" class="btn border border-secondary rounded-pill px-3 text-primary">
                                                     <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
                                                 </a>
+                                                <%
+                                                }
+                                                else{
+                                                %>
+                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <%
+                                                }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
@@ -358,6 +413,10 @@
 
     function promt() {
         window.alert("Successful!");
+    }
+    
+    function promtFailed(){
+        window.alert("Please login first!");
     }
 </script>
 </body>
