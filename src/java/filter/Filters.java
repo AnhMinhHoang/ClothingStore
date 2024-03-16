@@ -124,16 +124,6 @@ public class Filters implements Filter {
         
         //prevent user access to another page
         
-//        String urls = "404.jsp"+"cart.jsp"+ "footer.jsp"+ "header.jsp"+ "index.html"+ "index.jsp"
-//            +"login.jsp"+ "register.jsp"+ "shop.jsp"+ "test.jsp"+ "Home"+ "login"+ "registers";
-//        if(!urls.contains(url)){
-//            httpResponse.sendRedirect("Home");
-//        }
-        
-//        if(url.endsWith(".jsp")){
-//            httpResponse.sendRedirect("Home");
-//        }
-//        
         HttpSession session = httpRequest.getSession(false);
         //prevent login register when logged in
         if(url.contains("login.jsp") || url.contains("register.jsp")){
