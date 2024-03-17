@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" import="DAO.*, java.util.*, model.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"></jsp:include>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <script>
         var container = document.getElementById("tagID");
         var tag = container.getElementsByClassName("tag");
@@ -8,34 +9,25 @@
         current[0].className = current[0].className.replace(" active", "");
         tag[1].className += " active";
     </script>
-
-    <!-- Modal Search Start -->
-    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex align-items-center">
-                    <div class="input-group w-75 mx-auto d-flex">
-                        <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                        <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal Search End -->
-
-
+    
+    <%
+    String url = request.getRequestURL().toString();
+    url = url.replaceAll("^(.*?)(?=[a-zA-Z0-9]+\\.jsp)", "");
+    String theLocale = (String)session.getAttribute("language");
+    if(theLocale == null){
+        theLocale = "en_AU";
+        session.setAttribute("language", theLocale);
+    }
+    %>
+    <fmt:setLocale value="<%=theLocale%>"/>
+    <fmt:setBundle basename="lang.language"/>
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6">Shop</h1>
+        <h1 class="text-center text-white display-6"><fmt:message key="shop.shop1"></fmt:message></h1>
         <ol class="breadcrumb justify-content-center mb-0">
-            <li class="breadcrumb-item"><a href="Home">Home</a></li>
-            <li class="breadcrumb-item active text-white">Shop</li>
-            <li class="breadcrumb-item"><a href="cart.jsp">Cart</a></li>
+            <li class="breadcrumb-item"><a href="Home"><fmt:message key="shop.home"></fmt:message></a></li>
+            <li class="breadcrumb-item active text-white"><fmt:message key="shop.shop1"></fmt:message></li>
+            <li class="breadcrumb-item"><a href="cart.jsp"><fmt:message key="shop.cart"></fmt:message></a></li>
         </ol>
     </div>
     <!-- Single Page Header End -->
@@ -44,26 +36,16 @@
     <!-- Fruits Shop Start-->
     <div class="container-fluid fruite py-5">
         <div class="container py-5">
-            <h1 class="mb-4">Fresh fruits shop</h1>
+            <h1 class="mb-4"><fmt:message key="shop.shop2"></fmt:message></h1>
             <div class="row g-4">
                 <div class="col-lg-12">
                     <div class="row g-4">
                         <div class="col-xl-3">
                             <div class="input-group w-100 mx-auto d-flex">
-                                <input type="search" id="userInput" onkeyup="searchFuntion()" class="form-control p-3" placeholder="keywords">
+                                <input type="search" id="userInput" onkeyup="searchFuntion()" class="form-control p-3" placeholder="<fmt:message key="shop.keyword"></fmt:message>">
                             </div>
                         </div>
                         <div class="col-6"></div>
-                        <!--                            <div class="col-xl-3">
-                                                        <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                                                            <label for="fruits">Default Sorting:</label>
-                                                            <select id="sortOption" name="fruitlist" onchange="onChange()" class="border-0 form-select-sm bg-light me-3" form="fruitform">
-                                                                <option value="Nothing">Nothing</option>
-                                                                <option value="priceUp">Price Up</option>
-                                                                <option value="priceDown">Price Down</option>
-                                                            </select>   
-                                                        </div>
-                                                    </div>-->
                     </div>
                     <div class="row g-4">
                         <!--Get all array-->
@@ -78,35 +60,35 @@
                         <div class="row g-4">
                             <div class="col-lg-12">
                                 <div class="mb-3">
-                                    <h4>Categories</h4>
+                                    <h4><fmt:message key="shop.category"></fmt:message></h4>
                                     <ul class="list-unstyled fruite-categorie">
                                         <li>
                                             <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#" onclick="productClick(1); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i>All</a>
+                                                <a href="#" onclick="productClick(1); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i><fmt:message key="shop.all"></fmt:message></a>
                                                 <span>(<%=list.size()%>)</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#" onclick="productClick(2); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i>Tee</a>
+                                                <a href="#" onclick="productClick(2); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i><fmt:message key="shop.Tee"></fmt:message></a>
                                                 <span>(<%=listTee.size()%>)</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#" onclick="productClick(3); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i>Pant</a>
+                                                <a href="#" onclick="productClick(3); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i><fmt:message key="shop.Pant"></fmt:message></a>
                                                 <span>(<%=listPant.size()%>)</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#" onclick="productClick(4); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i>Jacket / Hoodie</a>
+                                                <a href="#" onclick="productClick(4); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i><fmt:message key="shop.Jacket/Hoodie"></fmt:message></a>
                                                 <span>(<%=listJackdie.size()%>)</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#" onclick="productClick(5); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i>Accessories</a>
+                                                <a href="#" onclick="productClick(5); event.preventDefault();"><i class="fas fa-apple-alt me-2"></i><fmt:message key="shop.Accessories"></fmt:message></a>
                                                 <span>(<%=listAccessories.size()%>)</span>
                                             </div>
                                         </li>
@@ -127,13 +109,15 @@
                                 <jsp:setProperty name="product" property="productPrice" value="<%=item.getProductPrice()%>"/>
                                 <jsp:setProperty name="product" property="productImg" value="<%=item.getProductImg()%>"/>
                                 <jsp:setProperty name="product" property="productDescription" value="<%=item.getProductDescription()%>"/>
-                                <jsp:setProperty name="product" property="productType" value="<%=item.getProductType()%>"/>
+                                <%
+                                    String type = "shop." + item.getProductType();
+                                %>
                                 <div class="col-md-6 col-lg-6 col-xl-4 all" style="display: block">
                                     <div class="rounded position-relative fruite-item">
                                         <div class="fruite-img">
                                             <img src="<jsp:getProperty name="product" property="productImg"/>" class="img-fluid w-100 rounded-top" alt="">
                                         </div>
-                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><jsp:getProperty name="product" property="productType"/></div>
+                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><fmt:message key="<%=type%>"></fmt:message></div>
                                         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                             <h4><jsp:getProperty name="product" property="productName"/></h4>
                                             <p><jsp:getProperty name="product" property="productDescription"/></p>
@@ -144,13 +128,13 @@
                                                 %>
                                                 <a href="AddToCart?productId=<jsp:getProperty name="product" property="productId"/>" 
                                                    onclick="promt()" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> <fmt:message key="shop.tocart"></fmt:message>
                                                 </a>
                                                 <%
                                                 }
                                                 else{
                                                 %>
-                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> <fmt:message key="shop.tocart"></fmt:message></a>
                                                 <%
                                                 }
                                                 %>
@@ -169,13 +153,15 @@
                                 <jsp:setProperty name="product" property="productPrice" value="<%=item.getProductPrice()%>"/>
                                 <jsp:setProperty name="product" property="productImg" value="<%=item.getProductImg()%>"/>
                                 <jsp:setProperty name="product" property="productDescription" value="<%=item.getProductDescription()%>"/>
-                                <jsp:setProperty name="product" property="productType" value="<%=item.getProductType()%>"/>
+                                <%
+                                    String type = "shop." + item.getProductType();
+                                %>
                                 <div class="col-md-6 col-lg-6 col-xl-4 tee" style="display: none">
                                     <div class="rounded position-relative fruite-item">
                                         <div class="fruite-img">
                                             <img src="<jsp:getProperty name="product" property="productImg"/>" class="img-fluid w-100 rounded-top" alt="">
                                         </div>
-                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><jsp:getProperty name="product" property="productType"/></div>
+                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><fmt:message key="<%=type%>"></fmt:message></div>
                                         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                             <h4><jsp:getProperty name="product" property="productName"/></h4>
                                             <p><jsp:getProperty name="product" property="productDescription"/></p>
@@ -186,13 +172,13 @@
                                                 %>
                                                 <a href="AddToCart?productId=<jsp:getProperty name="product" property="productId"/>" 
                                                    onclick="promt()" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> <fmt:message key="shop.tocart"></fmt:message>
                                                 </a>
                                                 <%
                                                 }
                                                 else{
                                                 %>
-                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> <fmt:message key="shop.tocart"></fmt:message></a>
                                                 <%
                                                 }
                                                 %>
@@ -211,13 +197,15 @@
                                 <jsp:setProperty name="product" property="productPrice" value="<%=item.getProductPrice()%>"/>
                                 <jsp:setProperty name="product" property="productImg" value="<%=item.getProductImg()%>"/>
                                 <jsp:setProperty name="product" property="productDescription" value="<%=item.getProductDescription()%>"/>
-                                <jsp:setProperty name="product" property="productType" value="<%=item.getProductType()%>"/>
+                                <%
+                                    String type = "shop." + item.getProductType();
+                                %>
                                 <div class="col-md-6 col-lg-6 col-xl-4 pant" style="display: none">
                                     <div class="rounded position-relative fruite-item">
                                         <div class="fruite-img">
                                             <img src="<jsp:getProperty name="product" property="productImg"/>" class="img-fluid w-100 rounded-top" alt="">
                                         </div>
-                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><jsp:getProperty name="product" property="productType"/></div>
+                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><fmt:message key="<%=type%>"></fmt:message></div>
                                         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                             <h4><jsp:getProperty name="product" property="productName"/></h4>
                                             <p><jsp:getProperty name="product" property="productDescription"/></p>
@@ -228,13 +216,13 @@
                                                 %>
                                                 <a href="AddToCart?productId=<jsp:getProperty name="product" property="productId"/>" 
                                                    onclick="promt()" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> <fmt:message key="shop.tocart"></fmt:message>
                                                 </a>
                                                 <%
                                                 }
                                                 else{
                                                 %>
-                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> <fmt:message key="shop.tocart"></fmt:message></a>
                                                 <%
                                                 }
                                                 %>
@@ -252,13 +240,15 @@
                                 <jsp:setProperty name="product" property="productPrice" value="<%=item.getProductPrice()%>"/>
                                 <jsp:setProperty name="product" property="productImg" value="<%=item.getProductImg()%>"/>
                                 <jsp:setProperty name="product" property="productDescription" value="<%=item.getProductDescription()%>"/>
-                                <jsp:setProperty name="product" property="productType" value="<%=item.getProductType()%>"/>
+                                <%
+                                    String type = "shop." + item.getProductType();
+                                %>
                                 <div class="col-md-6 col-lg-6 col-xl-4 jackdie" style="display: none">
                                     <div class="rounded position-relative fruite-item">
                                         <div class="fruite-img">
                                             <img src="<jsp:getProperty name="product" property="productImg"/>" class="img-fluid w-100 rounded-top" alt="">
                                         </div>
-                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><jsp:getProperty name="product" property="productType"/></div>
+                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><fmt:message key="<%=type%>"></fmt:message></div>
                                         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                             <h4><jsp:getProperty name="product" property="productName"/></h4>
                                             <p><jsp:getProperty name="product" property="productDescription"/></p>
@@ -269,13 +259,13 @@
                                                 %>
                                                 <a href="AddToCart?productId=<jsp:getProperty name="product" property="productId"/>" 
                                                    onclick="promt()" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> <fmt:message key="shop.tocart"></fmt:message>
                                                 </a>
                                                 <%
                                                 }
                                                 else{
                                                 %>
-                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> <fmt:message key="shop.tocart"></fmt:message></a>
                                                 <%
                                                 }
                                                 %>
@@ -294,13 +284,15 @@
                                 <jsp:setProperty name="product" property="productPrice" value="<%=item.getProductPrice()%>"/>
                                 <jsp:setProperty name="product" property="productImg" value="<%=item.getProductImg()%>"/>
                                 <jsp:setProperty name="product" property="productDescription" value="<%=item.getProductDescription()%>"/>
-                                <jsp:setProperty name="product" property="productType" value="<%=item.getProductType()%>"/>
+                                <%
+                                    String type = "shop." + item.getProductType();
+                                %>
                                 <div class="col-md-6 col-lg-6 col-xl-4 accessories" style="display: none">
                                     <div class="rounded position-relative fruite-item">
                                         <div class="fruite-img">
                                             <img src="<jsp:getProperty name="product" property="productImg"/>" class="img-fluid w-100 rounded-top" alt="">
                                         </div>
-                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><jsp:getProperty name="product" property="productType"/></div>
+                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><fmt:message key="<%=type%>"></fmt:message></div>
                                         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                             <h4><jsp:getProperty name="product" property="productName"/></h4>
                                             <p><jsp:getProperty name="product" property="productDescription"/></p>
@@ -311,13 +303,13 @@
                                                 %>
                                                 <a href="AddToCart?productId=<jsp:getProperty name="product" property="productId"/>" 
                                                    onclick="promt()" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> <fmt:message key="shop.tocart"></fmt:message>
                                                 </a>
                                                 <%
                                                 }
                                                 else{
                                                 %>
-                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <a href="login.jsp" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="promtFailed()"><i class="fa fa-shopping-bag me-2 text-primary"></i> <fmt:message key="shop.tocart"></fmt:message></a>
                                                 <%
                                                 }
                                                 %>

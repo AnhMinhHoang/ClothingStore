@@ -32,6 +32,10 @@
         <servlet-name>PurchaseControl</servlet-name>
         <servlet-class>controller.PurchaseControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LanguageControl</servlet-name>
+        <servlet-class>controller.LanguageControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>PurchaseControl</servlet-name>
         <url-pattern>/Purchase</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LanguageControl</servlet-name>
+        <url-pattern>/languageControl</url-pattern>
     </servlet-mapping>
     <error-page>
         <error-code>404</error-code>

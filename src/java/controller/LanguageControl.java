@@ -4,21 +4,19 @@
  */
 package controller;
 
-import DAO.UserDAO;
-import DAO.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.User;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author GoldCandy
  */
-public class RegisterControl extends HttpServlet {
+public class LanguageControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,43 +29,17 @@ public class RegisterControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String agreed = request.getParameter("agreed");
-        User user = new UserDAOImpl().findByEmail(email);
-        System.out.println(firstName + lastName + email + password);
-        boolean status = false;
-        String errorMessage = "";
-        String successMessage = "";
-        if (agreed != null && !firstName.isBlank() && !lastName.isBlank() && !email.isBlank() && !password.isBlank() && user == null) {
-            User newUser = new User();
-            newUser.setFirstName(firstName);
-            newUser.setLastName(lastName);
-            newUser.setEmail(email);
-            newUser.setPasswordHash(password);
-            UserDAO userDAO = new UserDAOImpl();
-            status = userDAO.insertUser(firstName, lastName, email, password);
-            if (status) {
-                successMessage = "register.success";
-            } else {
-                errorMessage = "register.wrong4";
-            }
-        } else {
-            if (agreed == null) {
-                errorMessage = "register.wrong3";
-            }
-            if(firstName.isBlank() || lastName.isBlank() || email.isBlank() || password.isBlank()){
-                errorMessage = "register.wrong1";
-            }
-            if(user != null){
-                errorMessage = "register.wrong2";
-            }
+        response.setContentType("text/html;charset=UTF-8");
+        String url = request.getParameter("url");
+        String locale = request.getParameter("locale");
+        HttpSession session = request.getSession();
+        switch (locale) {
+            case "en_AU" -> session.setAttribute("language", "vi_VN");
+            case "vi_VN" -> session.setAttribute("language", "ja_JP");
+            case "ja_JP" -> session.setAttribute("language", "en_AU");
         }
-        request.setAttribute("errorMessage", errorMessage);
-        request.setAttribute("successMessage", successMessage);
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+        
+        request.getRequestDispatcher(url).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

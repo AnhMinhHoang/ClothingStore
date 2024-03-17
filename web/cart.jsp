@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset = UTF-8" import="DAO.*, java.util.*, model.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="header.jsp"></jsp:include>
 
     <script>
@@ -9,33 +10,24 @@
         current[0].className = current[0].className.replace(" active", "");
         tag[2].className += " active";
     </script>
-    <!-- Modal Search Start -->
-    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex align-items-center">
-                    <div class="input-group w-75 mx-auto d-flex">
-                        <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                        <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal Search End -->
-
-
     <!-- Single Page Header start -->
+    <%
+    String url = request.getRequestURL().toString();
+    url = url.replaceAll("^(.*?)(?=[a-zA-Z0-9]+\\.jsp)", "");
+    String theLocale = (String)session.getAttribute("language");
+    if(theLocale == null){
+        theLocale = "en_AU";
+        session.setAttribute("language", theLocale);
+    }
+    %>
+    <fmt:setLocale value="<%=theLocale%>"/>
+    <fmt:setBundle basename="lang.language"/>
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6">Cart</h1>
+        <h1 class="text-center text-white display-6"><fmt:message key="cart.cart"></fmt:message></h1>
         <ol class="breadcrumb justify-content-center mb-0">
-            <li class="breadcrumb-item"><a href="Home">Home</a></li>
-            <li class="breadcrumb-item"><a href="shop.jsp">Shop</a></li>
-            <li class="breadcrumb-item active text-white">Cart</li>
+            <li class="breadcrumb-item"><a href="Home"><fmt:message key="cart.home"></fmt:message></a></li>
+            <li class="breadcrumb-item"><a href="shop.jsp"><fmt:message key="cart.shop"></fmt:message></a></li>
+            <li class="breadcrumb-item active text-white"><fmt:message key="cart.cart"></fmt:message></li>
         </ol>
     </div>
     <!-- Single Page Header End -->
@@ -48,11 +40,11 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Products</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
+                            <th scope="col"><fmt:message key="cart.products"></fmt:message></th>
+                            <th scope="col"><fmt:message key="cart.name"></fmt:message></th>
+                            <th scope="col"><fmt:message key="cart.price"></fmt:message></th>
+                            <th scope="col"><fmt:message key="cart.quantity"></fmt:message></th>
+                            <th scope="col"><fmt:message key="cart.total"></fmt:message></th>
 
                         </tr>
                     </thead>
@@ -102,11 +94,11 @@
                 <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                     <div class="bg-light rounded">
                         <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                            <h5 class="mb-0 ps-4 me-4">Total:</h5>
+                            <h5 class="mb-0 ps-4 me-4"><fmt:message key="cart.total"></fmt:message>:</h5>
                             <p class="mb-0 pe-4"><jsp:getProperty name="bill" property="allTotal"/> VND</p>
                         </div>
                         <form action="Purchase" method="GET">
-                            <input onclick="confirm()" type="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" value="Purchase"/>
+                            <input onclick="confirm()" type="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" value="<fmt:message key="cart.purchase"></fmt:message>"/>
                         </form>
                     </div>
                 </div>
@@ -122,9 +114,9 @@
                     <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                         <div class="bg-light rounded">
                             <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                                <h5 class="mb-0 ps-4 me-4">Total:</h5>
+                                <h5 class="mb-0 ps-4 me-4"><fmt:message key="cart.total"></fmt:message>:</h5>
                             </div>
-                            <button onclick="failed()" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Purchase</button>
+                            <button onclick="failed()" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button"><fmt:message key="cart.purchase"></fmt:message></button>
                         </div>
                     </div>
                 </div>

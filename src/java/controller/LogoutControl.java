@@ -31,7 +31,9 @@ public class LogoutControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        session.invalidate();
+        session.setAttribute("currentUser", null);
+        session.setAttribute("userID", null);
+        session.setAttribute("userEmail", null);
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
